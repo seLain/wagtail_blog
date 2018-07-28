@@ -12,13 +12,15 @@ from wagtail.search.signal_handlers import register_signal_handlers as wagtailse
 import os
 wagtailsearch_register_signal_handlers()
 
+from blog import urls as blog_urls
+print(blog_urls)
 
 urlpatterns = [
-    url(r'^blog/', include('blog.urls', namespace="blog")),
-    url(r'^django-admin/', include(admin.site.urls)),
-    url(r'^admin/', include(wagtailadmin_urls)),
-    url(r'^comments/', include('django_comments_xtd.urls')),
-    url(r'', include(wagtail_urls)),
+    url(r'^blog/', blog_urls),
+    url(r'^django-admin/', admin.site.urls),
+    url(r'^admin/', wagtailadmin_urls),
+    url(r'^comments/', django_comments_xtd.urls),
+    url(r'', wagtail_urls),
 ]
 
 if settings.DEBUG:
