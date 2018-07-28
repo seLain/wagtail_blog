@@ -124,7 +124,7 @@ class Command(BaseCommand):
         self, blog, id=None, get_comments=False, *args, **options
     ):
         if self.url == "just_testing":
-            with open('test-data-comments.json') as test_json:
+            with open('test-data-comments.json', encoding="utf-8") as test_json:
                 return json.load(test_json)
 
         self.url = blog
