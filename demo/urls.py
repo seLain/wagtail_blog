@@ -16,7 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from wagtail.core import urls as wagtail_urls
+from wagtail.admin import urls as wagtailadmin_urls
+from django_comments_xtd import urls as django_comments_xtd_urls
+
 urlpatterns = [
-    path('blog/', include('blog.urls')),
-    path('admin/', admin.site.urls),
+    path('blog/', include(('blog.urls', 'blog'), namespace=None)),
+    path('django-admin/', admin.site.urls),
+    path('admin/', include(wagtailadmin_urls)),
+    path('comments/', include(django_comments_xtd_urls)),
+    path('', include(wagtail_urls)),
 ]

@@ -21,7 +21,24 @@ from modelcluster.fields import ParentalKey
 from .utils import unique_slugify
 import datetime
 
-# Create your models here.
+COMMENTS_APP = getattr(settings, 'COMMENTS_APP', None)
+
+def get_blog_context(context):
+    """ Get context data useful on all blog related pages """
+    context['authors'] = get_user_model().objects.filter(
+        owned_pages__live=True,
+        owned_pages__content_type__model='blogpage'
+    ).annotate(Count('owned_pages')).order_by('-owned_pages__count')
+    context['all_categories'] = BlogCategory.objects.all()
+    context['root_categories'] = BlogCategory.objects.filter(
+        parent=None,
+    ).prefetch_related(
+        'children',
+    ).annotate(
+        blog_count=Count('blogpage'),
+    )
+    return context
+
 class BlogIndexPage(Page):
     @property
     def blogs(self):
@@ -76,6 +93,7 @@ class BlogIndexPage(Page):
             except EmptyPage:
                 blogs = paginator.page(paginator.num_pages)
 
+        print('COMMENTS_APP:{}'.format(COMMENTS_APP))
         context['blogs'] = blogs
         context['category'] = category
         context['tag'] = tag

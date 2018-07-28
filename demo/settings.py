@@ -31,8 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django_comments',
     'django_comments_xtd',
+    'django_comments',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     'blog',
 ]
 
+# for Django Site Framework
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -156,6 +158,6 @@ MEDIA_URL = '/media/'
 
 WAGTAIL_SITE_NAME = 'Blog Demo'
 
-COMMENTS_APP = "django_comments_xtd"
+COMMENTS_APP = 'django_comments_xtd'
 COMMENTS_XTD_MAX_THREAD_LEVEL = 2
 BLOG_PAGINATION_PER_PAGE=2
