@@ -4,6 +4,13 @@
 
 A WordPress-like blog app implemented in Wagtail.
 
+# Note
+This is a porting version to Django2, including two major branches:
+- **Master** : Minor fixes applied on upstream [thelabnyc/wagtail_blog](https://github.com/thelabnyc/wagtail_blog). Functional and all tests passed.
+- **Django2** : Rebuild from Django2-admin startproject. Additional fixes, such as the use of `path`, were applied.
+
+If you are looking for the original base, please visit  [thelabnyc/wagtail_blog](https://github.com/thelabnyc/wagtail_blog).
+
 # What is it
 
 After reimplementing WordPress-like blogs over and over again in Wagtail I decided to just make this.
