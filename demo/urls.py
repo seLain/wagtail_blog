@@ -15,7 +15,7 @@ wagtailsearch_register_signal_handlers()
 
 urlpatterns = [
     url(r'^blog/', include('blog.urls', namespace="blog")),
-    url(r'^django-admin/', include(admin.site.urls)),
+    url(r'^django-admin/', admin.site.urls),
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^comments/', include('django_comments_xtd.urls')),
     url(r'', include(wagtail_urls)),
